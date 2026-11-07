@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Coding Conf 2026 </title>
+
+<style>
+
+:root{--purple: #3b0a6f; --orange:#ffa500; --white: #fff}
+
+body {font-family: Arial; margin: 20px; background-color: var(--purple);}
+
+header{
+background-color: blue; padding:30px; border-radius: 15px; max-width:1100px; margin: auto;}
+
+nav {display:flex; justify-content: space-between; align-items: center; margin-bottom:30px;}
+nav a {color: white; padding:10px 15px}
+nav a:hover {color: var(--orange)} 
+
+.content{display: flex; justify-content: space-between; align-items: center; gap: 30px;}
+.text{flex:1;}
+
+.text h1{ color:black; font-size:32px;}
+
+.text p {line-height: 1.6;}
+
+.image img{width: 100%;max-width: 400px; border-radius: 15px}
+
+.registration-button{display:inline-block; background-color: var(--orange);
+padding: 12px 22px; border-radius: 25px; font-weight: bold;}
+
+.registration-button:hover{background-color:white; color: var(--orange)}
+:is(h2, h3) {color: var(--orange);}
+
+.details {text-align: center; color: white; padding: 30px; }
+
+@media (max-width: 600px) {
+
+body{padding: 10px;}
+
+nav {flex-direction:column; gap:10px;}
+
+nav a{display: inline-block; padding: 14px;}
+
+.content{ flex-direction: column; text-align:center;}
+
+
+.image{max-width: 100%;}}
+</style>
+
+<meta charset = "UTF-8"> 
+<meta name="viewport" content="width=device-width, initial-scale= 1.0">
+<title>Introduction to Coding Conf</title>
+
+</head>
+
+<body>
+
+<header>
+
+<nav>
+<strong> Coding Conf </strong>
+
+<div>
+<a href="landing_page.html">Introduction</a> 
+<a href="registration.html">Registration</a>  
+<a href="confirmation.html">Confirmation</a>
+</div>
+</nav>
+<p> A tech workshop and networking opportunity for teens, tertiary students and young professionals. </p>
+</header>
+
+
+<style> 
+.blink-heading {
+text-align: center; 
+color: var(--orange);
+animation: blink 4s ease-in-out infinite;}
+
+@keyframes  blink {50%{opacity:0.3}}
+
+button{background-color:var(--orange); padding:12px 22px; border:none; border-radius:25px;font-weight:bold; display: block; transition: 0.3s;}
+display:block; transition: 0.3s}
+ 
+button:hover{background-color: var(--white);cursor: pointer; transform:scale(1.05)}
+ 
+</style>
+<main>
+<h1 class= "blink-heading" >Confirmation Details!</h1>
+<h2> Congrats <span id= "fullname" ></span>, you have been successfully registered.</h2>
+ 
+<p> Thank you for signing up with Coding Conf 2026. Your ticket can be found below.  
+Print or screenshot and carry a copy of the confirmation page with you on the day of the event. It is needed in order to participate.
+ 
+Your confirmation code is: <strong  id= "confirmationCode" ></strong>
+</p>
+</main>
+ 
+<script>
+const data = JSON.parse(localStorage.getItem("registration"));
+if (!data) {
+window.location.href = "index.html";} 
+else {
+document.getElementById("fullname").textContent = data.name;
+document.getElementById("confirmationCode").textContent = data.code;}
+
+</script>
+
+<footer> 
+<p> Start your coding journey today. </p>
+</footer>
+
+</body>
+</html>

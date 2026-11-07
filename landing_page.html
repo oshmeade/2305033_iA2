@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Coding Conf 2026 </title>
+
+<style>
+
+:root{--purple: #3b0a6f; --orange:#ffa500; --white: #fff}
+
+body {font-family: Arial; margin: 20px; background-color: var(--purple)}
+
+header{
+background-color: blue; padding:30px; border-radius: 15px; max-width:1100px; margin: auto;}
+
+nav {display:flex; justify-content: space-between; align-items: center; margin-bottom:30px;}
+nav a {color: white; padding:10px 15px}
+nav a:hover {color: var(--orange)} 
+
+.blink-heading {
+color: black;
+animation: blink 4s ease-in-out infinite; }
+
+@keyframes  blink {50%{opacity:0.3}}
+
+.content{display: flex; justify-content: space-between; align-items: center; gap: 30px;}
+.text{flex:1;}
+
+.text h1{ color:black; font-size:32px;}
+
+.text p {line-height: 1.6;}
+
+.image img{width: 100%;max-width: 400px; border-radius: 15px}
+
+.registration-button{display:inline-block; background-color: var(--orange); color: var(--navy);
+padding: 12px 22px; border-radius: 25px; font-weight: bold;}
+
+.registration-button:hover{background-color:white; color: var(--orange)}
+:is(h2, h3) {color: var(--orange);}
+
+.details {text-align: center; color: white; padding: 30px; }
+
+
+@media (max-width: 600px) {
+
+body{padding: 10px;}
+
+nav {flex-direction:column; gap:10px;}
+
+nav a{display: inline-block; padding: 14px;}
+
+.content{flex-direction: column; text-align:center;}
+
+.image{max-width: 100%;}}
+</style>
+
+<meta charset = "UTF-8"> 
+<meta name = "viewport" content="width= device-width: initial-scale= 1.0">
+<title>Introduction to Coding Conf</title>
+
+</head>
+
+<body>
+
+<header>
+
+<nav>
+<strong> Coding Conf </strong>
+
+<div>
+<a href="landing_page.html">Introduction to Coding Conf</a> 
+<a href="registration.html">Registration</a>  
+<a href="confirmation.html">Confirmation</a>
+</div>
+
+</nav>
+<p> A tech workshop and networking opportunity for teens, tertiary students and young professionals. </p>
+</header>
+<main>
+<div class= "content">
+<div class= "text">
+<h1 class = "blink-heading">Coding Conf 2026 </h1>
+
+<section class= "details">
+<h2> Why attend?</h2>
+<p> 
+Coding Conf is a one-day technology conference that brings together individuals with a shared interest in coding, to learn,
+share ideas and build connections. It provides an
+ opportunity for participants to connect with individuals in the field, whether you're an expert or beginner, you are welcome to
+ attend and share your knowledge and/or learn something new.
+</p>
+
+<p>You’ll hear from guest speakers, join hands-on workshops, and meet people who are passionate 
+about coding and its impact on today's society. </p>
+</section>
+
+<section>
+<p>Date: October 26, 2026</p>
+<p> Location: Papine, Kingston </p>
+<p>Time: 1:00PM</p>
+</section>
+ 
+
+<a href="registration.html" class= "registration-button">Click here to register.</a>
+
+</div>
+
+<div class = "image">
+
+<img src ="hello_world.jpeg"> 
+
+</div>
+</div>
+</main>
+
+
+<footer>
+<p> Start your coding journey today. </p>
+</footer>
+</body>
+</html>

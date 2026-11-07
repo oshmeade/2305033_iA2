@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Coding Conf 2026 </title>
+
+<style>
+
+:root{--purple: #3b0a6f; --orange:#ffa500; --white: #fff;}
+
+body {font-family: Arial; margin: 20px; background-color: var(--purple);}
+
+header{
+background-color: blue; padding:30px; border-radius: 15px; max-width:1100px; margin: auto;}
+
+nav {display:flex; justify-content: space-between; align-items: center; margin-bottom:30px;}
+nav a {color: white; padding:10px 15px}
+nav a:hover {color: var(--orange)} 
+
+.content{display: flex; justify-content: space-between; align-items: center; gap: 30px;}
+.text{flex:1;}
+
+.text h1{ color:black; font-size:32px;}
+
+.text p {line-height: 1.6;}
+
+.image img{width: 100%;max-width: 400px; border-radius: 15px}
+
+.registration-button{display:inline-block; background-color: var(--orange);
+padding: 12px 22px; border-radius: 25px; font-weight: bold;}
+
+.registration-button:hover{background-color:white; color: var(--orange)}
+:is(h2, h3) {color: var(--orange);}
+
+.details {text-align: center; color: white; padding: 30px; }
+
+@media (max-width: 600px) {
+
+body{padding: 10px;}
+
+nav {flex-direction:column; gap:10px;}
+
+nav a{display: inline-block; padding: 14px;}
+
+.content{ flex-direction: column; text-align:center;}
+
+.image{max-width: 100%;}}
+</style>
+
+<meta charset = "UTF-8"> 
+<meta name = "viewport" content="width= device-width:width, initial-scale= 1.0">
+
+</head>
+
+<body>
+
+<header>
+
+<nav>
+<strong> Coding Conf </strong>
+
+<div>
+<a href="landing_page.html">Introduction</a> 
+<a href="registration.html">Registration</a>  
+<a href="confirmation.html">Confirmation</a>
+</div>
+</nav>
+<p> A tech workshop and networking opportunity for teens, tertiary students and young professionals. </p>
+</header>
+
+<main>
+<h1 class= "blink-heading" >Register here!</h1>
+<style> 
+.blink-heading {
+text-align: center; 
+color: var(--orange);
+animation: blink 4s ease-in-out infinite;}
+
+@keyframes  blink {50%{opacity:0.3}}
+
+button{background-color:var(--orange);cursor: pointer; padding:12px 22px; border:none; border-radius:25px;font-weight:bold; display: block; transition: 0.3s;}
+
+ 
+button:hover{background-color: var(--white); transform:scale(1.05)}
+
+#avatarPreview {display: block;width: 6rem;height: 6rem;object-fit: cover;border-radius: 50%;margin-top: 0.5rem;}
+
+.error-message:not(:empty) {
+display: inline-block;
+margin-left: 0.5rem;
+padding: 0.25rem 0.6rem;
+color: #b00020;
+background-color: #ffe5e5;
+border-radius: 6px;
+}
+
+.error-message:not(:empty)::before {
+ content: "\26A0 ";
+}
+
+</style>
+ 
+<form id= "registrationForm" novalidate>
+ 
+ <p> Please complete the form below if you wish to participate in Coding Conf 2026. Ensure that all fields are filled out correctly. 
+ Your details will be kept confidential. </p>
+
+<label for = "avatar" > Please upload a profile photo: </label>
+<input type="file" id="avatar" accept= "image/png,image/jpeg" aria-describedby="avatarError">
+<img id="avatarPreview" alt="Upload a profile photo" hidden>
+<span id="avatarError"  role="alert"></span>
+
+<br><br>
+ 
+<label for = "fullname" > Fullname: </label>
+<input type="text" id="fullname" required aria-describedby="nameError">
+<span id= "nameError" class= "error-message" role= "alert" ></span>
+<br><br>
+ 
+<label for = "github" > What is your Github handle?: </label>
+<input type="text" id="github" required aria-describedby="githubError">
+<span id= "githubError" class= "error-message" role= "alert" ></span>
+<br><br>
+  
+<label for = "email"> What is your email address? </label>
+<input type = "email" id="email" required aria-describedby="emailError">
+<span id="emailError" class= "error-message" role="alert" ></span>
+ 
+<br><br>
+   
+<button type = "submit" > Complete registration </button>
+
+</form>
+ </main>
+ 
+<script> function generatingConfirmationCode() 
+{ return "CONF-" + Math.random() .toString(36) .substring(2,6) .toUpperCase();}
+ 
+const form = document.getElementById("registrationForm");
+
+const avatarInput = document.getElementById("avatar");
+const avatarPreview = document.getElementById("avatarPreview");
+
+const MAX_SIZE = 500 * 1024;              
+const ALLOWED_TYPES = ["image/jpeg", "image/png"];
+
+function email_check(value) {
+const email = value.trim();
+const atPosition = email.indexOf("@");
+const lastDot = email.lastIndexOf(".");
+const message = "Enter a valid email address.";
+  
+if (email === "" || email.includes(" ")) return message;
+if (atPosition < 1) return message;
+if (atPosition !== email.lastIndexOf("@")) return message;
+if (lastDot < atPosition + 2) return message;
+if (lastDot === email.length - 1) return message;  
+return "";}  
+function name_check(value){return value.trim() === "" ? "Please enter your full name." : "";}
+
+
+
+function checkGithub(value) {
+const handle = value.trim();
+if (!handle.startsWith("@")) return "Your Github handle must start with @.";
+return "";
+}
+
+function checkAvatar(file) {
+if (!file) return "Please upload a profile photo.";
+if (!ALLOWED_TYPES.includes(file.type)) return "Photo must be a JPEG or PNG.";
+if (file.size > MAX_SIZE) return "Photo must be smaller than 500KB.";
+return "";
+}
+
+function showError(id, message) {
+document.getElementById(id).textContent = message;
+}
+
+avatarInput.addEventListener("change", function () {
+const file = avatarInput.files[0];
+const message = checkAvatar(file);
+showError("avatarError", message);
+  
+if (file && !message) {
+avatarPreview.src = URL.createObjectURL(file);
+avatarPreview.hidden = false;} 
+else {
+avatarPreview.hidden = true;}});
+
+form.addEventListener("submit", function (event) {
+event.preventDefault();
+  
+const file = avatarInput.files[0];
+const errors = {
+avatarError: checkAvatar(file),
+nameError: name_check(document.getElementById("fullname").value),
+githubError: checkGithub(document.getElementById("github").value),
+emailError: email_check(document.getElementById("email").value)};
+  
+let hasError = false;
+for (const id in errors) {showError(id, errors[id]);
+if (errors[id] !== "") hasError = true;}
+if (hasError) return;
+  
+const reader = new FileReader();
+reader.addEventListener("load", function () {
+const registration = {
+name: document.getElementById("fullname").value.trim(),
+email: document.getElementById("email").value.trim(),
+github: document.getElementById("github").value.trim(),
+code: generatingConfirmationCode(),
+avatar: reader.result};
+localStorage.setItem("registration", JSON.stringify(registration));
+window.location.href = "confirmation.html";});
+reader.readAsDataURL(file);
+});
+
+ </script>
+ 
+ <footer>
+ <p> Start your coding journey today. </p>
+ </footer>
+ </body>
+ </html>
